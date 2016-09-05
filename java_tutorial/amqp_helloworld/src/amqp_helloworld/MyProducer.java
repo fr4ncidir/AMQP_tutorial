@@ -16,12 +16,9 @@ public class MyProducer {
 	public static void main(String[] args) throws IOException, TimeoutException {
 		ConnectionFactory factory = new ConnectionFactory();
 	    factory.setHost("localhost");
-	    
-	    Connection connection = null;
-	    Channel channel = null;
 
-	    connection = factory.newConnection();
-	    channel = connection.createChannel();
+	    Connection connection = factory.newConnection();
+	    Channel channel = connection.createChannel();
 	    channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 	    String message = "";
 	    do {

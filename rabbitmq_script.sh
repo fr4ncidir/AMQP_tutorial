@@ -15,6 +15,7 @@ if [ "$#" -gt 1 ] || [ "$#" -eq 0 ]
   rabbitmq_script.sh queues		lists the queues in the server, and how many messages are in them
   rabbitmq_script.sh bindings		lists the bindings in the server
   rabbitmq_script.sh purge		clears the RabbitMQ server
+  rabbitmq_script.sh pending		lists the unacknowledged messages in the server
   
 For further functionalities, see https://www.rabbitmq.com/man/rabbitmqctl.1.man.html"
   exit
@@ -48,5 +49,10 @@ if [ "$1" == "purge" ]; then
   sudo rabbitmqctl reset
   sudo rabbitmqctl start_app
   echo "RabbitMQ server cleared"
+  exit
+fi
+if [ "$1" == "pending" ]; then
+  echo "Queue_name msg_ready pending_ack"
+  sudo rabbitmqctl list_queues name messages_ready messages_unacknowledged
   exit
 fi
