@@ -10,7 +10,7 @@ if [ "$#" -gt 1 ] || [ "$#" -eq 0 ]
   then
   echo "USAGE:
   rabbitmq_script.sh destroy		stops the AMQP RabbitMQ server
-  rabbitmq_script.sh create		starts the server AMQP process RabbitMQ on localhost:5672
+  rabbitmq_script.sh run		starts the server AMQP process RabbitMQ on localhost:5672
   rabbitmq_script.sh status		gets the RabbitMQ server status
   rabbitmq_script.sh queues		lists the queues in the server, and how many messages are in them
   rabbitmq_script.sh bindings		lists the bindings in the server
@@ -25,7 +25,7 @@ if [ "$1" == "destroy" ]; then
   echo "RabbitMQ server stopped"
   exit
 fi
-if [ "$1" == "create" ]; then
+if [ "$1" == "run" ]; then
   sudo rabbitmq-server -detached
   sudo rabbitmqctl status | grep -o 'pid,[0-9][0-9]*'
   echo "RabbitMQ server created"
