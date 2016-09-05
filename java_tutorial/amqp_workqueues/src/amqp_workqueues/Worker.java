@@ -1,3 +1,6 @@
+/*
+ * AMQP TUTORIAL #2
+ */
 package amqp_workqueues;
 
 import java.io.IOException;

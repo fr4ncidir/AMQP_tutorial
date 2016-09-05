@@ -1,3 +1,6 @@
+/*
+ * AMQP TUTORIAL #1
+ */
 package amqp_helloworld;
 
 import com.rabbitmq.client.Channel;
@@ -11,6 +14,7 @@ import java.util.concurrent.TimeoutException;
 public class MyProducer {
 	private final static boolean DURABLE_QUEUE = false;
 	private final static String QUEUE_NAME = "hello";
+	private final static String EXCHANGE_NAME = "";
 	private final static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) throws IOException, TimeoutException {
@@ -24,7 +28,7 @@ public class MyProducer {
 	    do {
 	    	message = readString();
 	    	if (!message.equals("exit")) {
-	    		channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
+	    		channel.basicPublish(EXCHANGE_NAME, QUEUE_NAME, null, message.getBytes());
 	    		System.out.println(" [x] Sent '" + message + "'");
 	    	}
 	    } while (!message.equals("exit"));

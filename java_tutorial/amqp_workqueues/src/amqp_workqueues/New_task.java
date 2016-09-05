@@ -1,3 +1,6 @@
+/*
+ * AMQP TUTORIAL #2
+ */
 package amqp_workqueues;
 
 import java.io.IOException;
@@ -12,6 +15,7 @@ import com.rabbitmq.client.MessageProperties;
 public class New_task {
 	private final static Scanner scanner = new Scanner(System.in);
 	private final static String QUEUE_NAME = "workqueue";
+	private final static String EXCHANGE_NAME = "";
 	private final static boolean DURABLE_QUEUE = true;
 
 	public static void main(String[] args) throws IOException, TimeoutException {
@@ -26,7 +30,7 @@ public class New_task {
 			System.out.println("Seconds for the task to wait: ");
 			String message = readString();
 			if (message.equals("exit")) break;
-			channel.basicPublish("", QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes());
+			channel.basicPublish(EXCHANGE_NAME, QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes());
 			System.out.println(" [x] Sent request for " + message + " seconds");
 		}
 	    channel.close();
