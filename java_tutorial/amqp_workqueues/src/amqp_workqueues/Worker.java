@@ -14,6 +14,7 @@ import com.rabbitmq.client.Envelope;
 public class Worker {
 	private final static String QUEUE_NAME = "workqueue";
 	private final static boolean DURABLE_QUEUE = true;
+	private final static boolean AUTOACK = false;
 	private final static int MAX_WORK_NUMBER = 1;
 	
 	public static void main(String[] args) throws IOException, TimeoutException {
@@ -45,7 +46,7 @@ public class Worker {
 				}
 	        }
 	    };
-	    channel.basicConsume(QUEUE_NAME, false, consumer);
+	    channel.basicConsume(QUEUE_NAME, AUTOACK, consumer);
 	}
 
 }

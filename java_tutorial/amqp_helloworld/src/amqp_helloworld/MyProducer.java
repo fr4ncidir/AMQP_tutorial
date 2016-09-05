@@ -9,7 +9,7 @@ import java.util.Scanner;
 import java.util.concurrent.TimeoutException;
 
 public class MyProducer {
-	
+	private final static boolean DURABLE_QUEUE = false;
 	private final static String QUEUE_NAME = "hello";
 	private final static Scanner scanner = new Scanner(System.in);
 
@@ -19,7 +19,7 @@ public class MyProducer {
 
 	    Connection connection = factory.newConnection();
 	    Channel channel = connection.createChannel();
-	    channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+	    channel.queueDeclare(QUEUE_NAME, DURABLE_QUEUE, false, false, null);
 	    String message = "";
 	    do {
 	    	message = readString();

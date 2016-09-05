@@ -12,7 +12,8 @@ import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
 
 public class MyConsumer {
-	
+	private final static boolean AUTOACK = true;
+	private final static boolean DURABLE_QUEUE = false;
 	private final static String QUEUE_NAME = "hello";
 
 	public static void main(String[] args) throws IOException, TimeoutException {
@@ -20,7 +21,7 @@ public class MyConsumer {
 	    factory.setHost("localhost");
 	    Connection connection = factory.newConnection();
 	    Channel channel = connection.createChannel();
-	    channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+	    channel.queueDeclare(QUEUE_NAME, DURABLE_QUEUE, false, false, null);
 	    
 	    System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 	    
@@ -31,7 +32,7 @@ public class MyConsumer {
 	    		System.out.println(" [x] Received '" + message + "'");
 	        }
 	    };
-	    channel.basicConsume(QUEUE_NAME, true, consumer);
+	    channel.basicConsume(QUEUE_NAME, AUTOACK, consumer);
 	}
 
 }
