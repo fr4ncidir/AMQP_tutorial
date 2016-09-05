@@ -14,6 +14,7 @@ if [ "$#" -gt 1 ] || [ "$#" -eq 0 ]
   rabbitmq_script.sh status		gets the RabbitMQ server status
   rabbitmq_script.sh queues		lists the queues in the server, and how many messages are in them
   rabbitmq_script.sh bindings		lists the bindings in the server
+  rabbitmq_script.sh exchanges		lists the exchanges in the server
   rabbitmq_script.sh purge		clears the RabbitMQ server
   rabbitmq_script.sh pending		lists the unacknowledged messages in the server
   
@@ -42,6 +43,10 @@ if [ "$1" == "queues" ]; then
 fi
 if [ "$1" == "bindings" ]; then
   sudo rabbitmqctl list_bindings
+  exit
+fi
+if [ "$1" == "exchanges" ]; then
+  sudo rabbitmqctl list_exchanges
   exit
 fi
 if [ "$1" == "purge" ]; then
