@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>publish_subscribe</name>
+	<name>amqp_publish_subscribe</name>
 	<comment></comment>
 	<projects>
 	</projects>
