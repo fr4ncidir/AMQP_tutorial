@@ -10,3 +10,5 @@ sudo apt-get install python-pika
 
 To install Rabbitmq server
 sudo apt-get install rabbitmq-server
+
+prova
