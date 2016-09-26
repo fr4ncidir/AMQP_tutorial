@@ -25,7 +25,8 @@
 import pika
 
 def main():
-	connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+	connection = pika.BlockingConnection(
+		pika.ConnectionParameters(host='192.168.1.106',port=5672,credentials=pika.PlainCredentials(username='Francesco',password='francesco')))
 	channel = connection.channel()
 	channel.queue_declare(queue='hello')
 	while True:

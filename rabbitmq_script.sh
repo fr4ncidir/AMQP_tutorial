@@ -8,18 +8,18 @@ if [ "$EUID" -ne 0 ]
 fi
 if [ "$#" -gt 1 ] || [ "$#" -eq 0 ]
   then
-  echo "USAGE:
-  rabbitmq_script.sh destroy		stops the AMQP RabbitMQ server
-  rabbitmq_script.sh run		starts the server AMQP process RabbitMQ on localhost:5672
-  rabbitmq_script.sh status		gets the RabbitMQ server status
-  rabbitmq_script.sh queues		lists the queues in the server, and how many messages are in them
-  rabbitmq_script.sh bindings		lists the bindings in the server
-  rabbitmq_script.sh exchanges		lists the exchanges in the server
-  rabbitmq_script.sh purge		clears the RabbitMQ server
-  rabbitmq_script.sh pending		lists the unacknowledged messages in the server
-  
+    echo "USAGE:
+rabbitmq_script.sh destroy		stops the AMQP RabbitMQ server
+rabbitmq_script.sh run			starts the server AMQP process RabbitMQ on localhost:5672
+rabbitmq_script.sh status		gets the RabbitMQ server status
+rabbitmq_script.sh queues		lists the queues in the server, and how many messages are in them
+rabbitmq_script.sh bindings		lists the bindings in the server
+rabbitmq_script.sh exchanges		lists the exchanges in the server
+rabbitmq_script.sh purge		clears the RabbitMQ server
+rabbitmq_script.sh pending		lists the unacknowledged messages in the server
+
 For further functionalities, see https://www.rabbitmq.com/man/rabbitmqctl.1.man.html"
-  exit
+    exit
 fi
 
 if [ "$1" == "destroy" ]; then
@@ -28,6 +28,9 @@ if [ "$1" == "destroy" ]; then
   exit
 fi
 if [ "$1" == "run" ]; then
+  sudo gedit /home/francesco/bin/rabbitmq.config
+  sudo rm /etc/rabbitmq/rabbitmq.config
+  sudo cp /home/francesco/bin/rabbitmq.config /etc/rabbitmq/rabbitmq.config
   sudo rabbitmq-server -detached
   sudo rabbitmqctl status | grep -o 'pid,[0-9][0-9]*'
   echo "RabbitMQ server created"
